@@ -1,9 +1,6 @@
 version: 1.0.{build}
 image: Visual Studio 2017
 build:
+  publish_wap: true
   verbosity: minimal
 test: off
-artifacts:
-- path: Deploy
-  name: Scavenger-Hunt
-  type: WebDeployPackage
