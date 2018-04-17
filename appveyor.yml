@@ -6,3 +6,6 @@ image: Visual Studio 2017
 build:
   publish_wap: true
   verbosity: minimal
+deploy:
+- provider: Environment
+  name: Scavenger-Hunt
