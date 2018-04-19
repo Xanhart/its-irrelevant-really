@@ -12,8 +12,8 @@
 </div>
 @foreach (var item in Model)
 {
-    <div>
-        @Html.DisplayNameFor(model => model.AnimalName)
+    <div class="col-sm-6 btn btn-primary">
+        @Html.DisplayFor(modelItem => item.AnimalName)
     </div>
 }
 
