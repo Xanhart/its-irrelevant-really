@@ -1,0 +1,42 @@
+﻿@model ScavengerHunt.Models.Photo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Photo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoImageLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoImageLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoGPS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoGPS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhotoAnimalName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhotoAnimalName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PhotoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
