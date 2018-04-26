@@ -21,7 +21,14 @@
 
     $("#submitbutton").click(function () {
         var image = canvas.toDataURL('image/png')
+        var upload = {
+            key: selectedAnimal,
+            file: image
+        }
 
+        $.post("https://s3.wasabisys.com/scavenger-hunt", upload, function (data) {
+            console.log("posted!!!! - " + data)
+        })
 
 
         function postPhoto() {

@@ -6,16 +6,14 @@
     ViewBag.Title = "MetroParks Scavenger Hunt!";
 }
 
-<div class="jumbotron">
-    <h1>MetroParks Scavenger Hunt!</h1>
-    <p class="lead">Have fun tracking down the all the animals you can find in the MetroParks!</p>
-</div>
+
 <div id="animal-select">
     @foreach (var item in Model)
     {
-        <div class="col-sm-6 btn btn-primary photo-btn" id="@Html.DisplayFor(modelItem => item.AnimalName)">
+        <div class="col-md-6 btn photo-btn" id="@Html.DisplayFor(modelItem => item.AnimalName)">
 
-            <img src="https://s3.wasabisys.com/scavenger-hunt/@Html.DisplayFor(modelItem => item.AnimalName).ToString().ToLower()icon.png"
+            
+            <img src="https://s3.wasabisys.com/scavenger-hunt/@Html.DisplayFor(modelItem => item.AnimalName).ToString().ToLower()icon.png" />
         </div>
     }
 </div>
@@ -34,4 +32,3 @@
 
 <!-- /ko -->
 
-<!-- Will use js to show and hide the elements I need when I need them, totally not ideal, but workable -->
