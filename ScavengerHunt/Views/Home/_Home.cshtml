@@ -1,25 +1,38 @@
 ﻿<!-- ko with: home -->
-@using ScavengerHunt.Models;
-@model List<Park>
+@model IEnumerable<ScavengerHunt.Models.Animal>
+
 
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "MetroParks GO!";
 }
-
 <div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <h1>MetroParks GO!</h1>
+    <p class="lead">Can YOU find all the animals in the MetroParks?</p>
 </div>
-@*<div class="row">
-    @foreach (var p in Model)
+
+<div id="animal-select">
+    @foreach (var item in Model)
     {
+        <div class="col-md-6 btn photo-btn" id="@Html.DisplayFor(modelItem => item.AnimalName)">
 
-        <div class="col-md-4">
-            <h2>@p.ParkName</h2>
+            
+            <img src="https://s3.wasabisys.com/scavenger-hunt/@Html.DisplayFor(modelItem => item.AnimalName).ToString().ToLower()icon.png" />
         </div>
-
     }
-</div>*@
+</div>
+
+<div id="take-picture" hidden>
+    <div class="camera">
+        <video id="video">Video stream not available.</video>
+        <button id="startbutton">Take photo</button>
+    </div>
+    <canvas id="canvas"></canvas>
+</div>
+<div class="output" hidden>
+    <img id="photo" alt="The screen capture will appear in this box.">
+    <button id="submitbutton">Submit photo</button>
+</div>
+<div id="@User.Identity.Name" class="idkeeper"></div>
 
 <!-- /ko -->
+

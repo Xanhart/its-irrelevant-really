@@ -1,0 +1,57 @@
+﻿@model IEnumerable<ScavengerHunt.Models.Park>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Parkaddress)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkCity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkState)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkZip)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Parkaddress)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkCity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ParkZip)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ParkID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ParkID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ParkID })
+        </td>
+    </tr>
+}
+
+</table>

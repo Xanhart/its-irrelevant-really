@@ -31,5 +31,11 @@ namespace ScavengerHunt.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<ScavengerHunt.Models.Park> Parks { get; set; }
+
+        public System.Data.Entity.DbSet<ScavengerHunt.Models.Animal> Animals { get; set; }
+
+        public System.Data.Entity.DbSet<ScavengerHunt.Models.Photo> Photos { get; set; }
     }
 }

@@ -1,0 +1,58 @@
+﻿@model ScavengerHunt.Models.Park
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Park</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Parkaddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Parkaddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkCity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkCity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ParkZip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ParkZip)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ParkID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
