@@ -3,9 +3,12 @@
 
 
 @{
-    ViewBag.Title = "MetroParks Scavenger Hunt!";
+    ViewBag.Title = "MetroParks GO!";
 }
-
+<div class="jumbotron">
+    <h1>MetroParks GO!</h1>
+    <p class="lead">Can YOU find all the animals in the MetroParks?</p>
+</div>
 
 <div id="animal-select">
     @foreach (var item in Model)
@@ -27,8 +30,9 @@
 </div>
 <div class="output" hidden>
     <img id="photo" alt="The screen capture will appear in this box.">
-    <button id="submitbutton">Submit Photo</button>
+    <button id="submitbutton">Submit photo</button>
 </div>
+<div id="@User.Identity.Name" class="idkeeper"></div>
 
 <!-- /ko -->
 

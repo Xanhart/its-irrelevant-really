@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.IO;
+using System.Drawing;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -55,6 +58,36 @@ namespace ScavengerHunt.Controllers
             }
 
             return View(photo);
+        }
+
+        [HttpPost]
+        public ActionResult Upload()
+        {
+            // sets up the name of the file to save
+            var date = DateTime.Now;
+            string userID = HttpContext.Request.Form["userID"];
+            string animalName = HttpContext.Request.Form["selectedAnimal"];
+            string fileName = $"c:/Scavenger/{userID}-{animalName}-{date:MM-dd-yy_HH-mm-ss}.png";
+
+            // converts the file toa  byte array which can be saved
+            string dataURL = HttpContext.Request.Form["imageData"];            
+            var base64Data = Regex.Match(dataURL, @"data:image/(?<type>.+?),(?<data>.+)").Groups["data"].Value;
+            byte[] bytes = Convert.FromBase64String(base64Data);
+
+            // saves the actual file to the generated location
+            System.IO.File.WriteAllBytes(fileName, bytes);
+
+            //Saves the photo information to the DB
+            Photo photo = new Photo
+            {
+                PhotoAnimalName = animalName,
+                UserID = userID,
+                PhotoImageLocation = fileName
+            };
+            db.Photos.Add(photo);
+            db.SaveChanges();
+
+            return Json(new { success = true });
         }
 
         // GET: Photos/Edit/5

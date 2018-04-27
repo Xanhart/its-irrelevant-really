@@ -265,6 +265,14 @@
     <Compile Include="Migrations\201804232317126_photos.Designer.cs">
       <DependentUpon>201804232317126_photos.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804270511189_addedUserID.cs" />
+    <Compile Include="Migrations\201804270511189_addedUserID.Designer.cs">
+      <DependentUpon>201804270511189_addedUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804270512508_fixtypo.cs" />
+    <Compile Include="Migrations\201804270512508_fixtypo.Designer.cs">
+      <DependentUpon>201804270512508_fixtypo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AnimalModel.cs" />
@@ -409,6 +417,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804232317126_photos.resx">
       <DependentUpon>201804232317126_photos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270511189_addedUserID.resx">
+      <DependentUpon>201804270511189_addedUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804270512508_fixtypo.resx">
+      <DependentUpon>201804270512508_fixtypo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -9,38 +9,53 @@
         alert('getUserMedia() is not supported by your browser');
     }
 
-    var selectedAnimal = null;
+    var selectedAnimal;
 
     $(".photo-btn").click(function () {
         $("#animal-select").hide();
         $("#take-picture").show();
 
-        selectedAnimal = $(this)[0].innerText.trim()
+        selectedAnimal = $(this)[0].id;
         
     })
 
     $("#submitbutton").click(function () {
-        var image = canvas.toDataURL('image/png')
-        var upload = {
-            key: selectedAnimal,
-            file: image
+        var image = canvas.toDataURL('image/png');
+        var animal = selectedAnimal;
+        var user = $(".idkeeper")[0].id
+        console.log(user);
+
+        function sendFile(fileData) {
+            var formData = new FormData();
+
+            formData.append('userID', user);
+            formData.append('selectedAnimal', selectedAnimal);
+            formData.append('imageData', fileData);
+
+            $.ajax({
+                type: 'POST',
+                url: 'Photos/Upload',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.success) {
+                        //console.log("filedata: " + data.message)
+                        alert('Awesome! Can you find the rest?');
+                        window.location.href = 'Home'
+                    } else {
+                        //console.log("no success: " + data);
+                        alert('There was an error uploading your file!');
+                    }
+                },
+                error: function (data) {
+                    //console.log("error: " + data);
+                    alert('There was an error uploading your file!');
+                }
+            });
         }
 
-        $.post("https://s3.wasabisys.com/scavenger-hunt", upload, function (data) {
-            console.log("posted!!!! - " + data)
-        })
-
-
-        function postPhoto() {
-            var photoData = {
-                PhotoAnimalName: selectedAnimal
-            }
-
-            $.post("photos/Create", photoData, function (data) {
-                console.log(data)
-            })
-        }
-
+        sendFile(image)
         
     })
 
