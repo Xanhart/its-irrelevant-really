@@ -32,7 +32,7 @@
 
         navigator.getMedia(
             {
-                video: true,
+                video: { facingMode: "environment" },
                 audio: false
             },
             function (stream) {
@@ -62,7 +62,6 @@
 
                 video.setAttribute('width', width);
                 video.setAttribute('height', height);
-                video.setAttribute('facingMode', { ideal: "environment"});
                 canvas.setAttribute('width', width);
                 canvas.setAttribute('height', height);
                 streaming = true;
@@ -114,4 +113,6 @@
     // Set up our event listener to run the startup process
     // once loading is complete.
     window.addEventListener('load', startup, false);
+
+    
 })();
