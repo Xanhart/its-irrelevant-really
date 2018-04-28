@@ -24,13 +24,14 @@
 <div id="take-picture" hidden>
     <div class="camera">
         <video id="video">Video stream not available.</video>
-        <button id="startbutton">Take photo</button>
+        <div class="btn btn-primary" id="startbutton">Take photo</div>
+        <div class="btn btn-primary" id="swapbutton">Swap Camera</div>
     </div>
     <canvas id="canvas"></canvas>
 </div>
 <div class="output" hidden>
     <img id="photo" alt="The screen capture will appear in this box.">
-    <button id="submitbutton">Submit photo</button>
+    <div class="btn btn-primary" id="submitbutton">Submit photo</div>
 </div>
 <div id="@User.Identity.Name" class="idkeeper"></div>
 
