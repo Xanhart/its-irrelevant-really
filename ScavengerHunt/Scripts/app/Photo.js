@@ -14,8 +14,8 @@
     $(".photo-btn").click(function () {
         $("#animal-select").hide();
         $("#take-picture").show();
-        //video = document.getElementById('video');
-        //video.play();
+        video = document.getElementById('video');
+        video.play();
 
         selectedAnimal = $(this)[0].id;
         
