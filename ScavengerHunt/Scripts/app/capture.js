@@ -62,7 +62,7 @@
 
                 video.setAttribute('width', width);
                 video.setAttribute('height', height);
-                video.setAttribute('facingmode', "back");
+                video.setAttribute('facingmode', { ideal: "environment"});
                 canvas.setAttribute('width', width);
                 canvas.setAttribute('height', height);
                 streaming = true;

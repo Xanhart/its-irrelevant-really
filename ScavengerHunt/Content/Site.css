@@ -1,18 +1,54 @@
-﻿body {
+﻿@font-face {
+    font-family: 'MyriadPro-Regular';
+    src: url('../fonts/MyriadPro-Regular.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'MyriadPro-It';
+    src: url('../fonts/MyriadPro-It.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'MyriadPro-BoldCond';
+    src: url('../fonts/MyriadPro-BoldCond.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'MyriadPro-Bold';
+    src: url('../fonts/MyriadPro-Bold.otf') format('opentype');
+}
+
+
+
+.body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Myriad Pro';
+    color: black;
 }
+
+
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+    background-color: #D6D6D6
 }
+
 
 img {
     max-width: 200px;
     max-height: 150px;
 }
+
+.jumbotron {
+    margin-top: 50px;
+    text-align: center;
+    color: white;
+    background-color: #1d5c1e;
+}
+
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
@@ -32,6 +68,16 @@ textarea {
 .padding-error {
     padding-top: 20px;
 }
+
+.btn .btn-default .btn-md {
+    background-color: #6Ab03d;
+}
+
+.nav .navbar-nav {
+    color: blue;
+}
+
+
 
 @media only screen and (max-width: 767px) {
     .nofloat {

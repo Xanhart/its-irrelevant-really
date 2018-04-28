@@ -1,39 +1,33 @@
-﻿<!-- ko with: home -->
+﻿﻿<!-- ko with: home -->
 @model IEnumerable<ScavengerHunt.Models.Animal>
-
 
 @{
     ViewBag.Title = "MetroParks GO!";
 }
 <div class="jumbotron">
-    <h1>MetroParks GO!</h1>
+    <h2>MetroParks GO!</h2>
+    <h3>It's time to expore your parks.</h3>
     <p class="lead">Can YOU find all the animals in the MetroParks?</p>
 </div>
-
 <div id="animal-select">
     @foreach (var item in Model)
     {
         <div class="col-md-6 btn photo-btn" id="@Html.DisplayFor(modelItem => item.AnimalName)">
 
-            
             <img src="https://s3.wasabisys.com/scavenger-hunt/@Html.DisplayFor(modelItem => item.AnimalName).ToString().ToLower()icon.png" />
         </div>
     }
 </div>
-
 <div id="take-picture" hidden>
     <div class="camera">
         <video id="video">Video stream not available.</video>
-        <div class="btn btn-primary" id="startbutton">Take photo</div>
-        <div class="btn btn-primary" id="swapbutton">Swap Camera</div>
+        <button id="startbutton">Take photo</button>
     </div>
     <canvas id="canvas"></canvas>
 </div>
 <div class="output" hidden>
     <img id="photo" alt="The screen capture will appear in this box.">
-    <div class="btn btn-primary" id="submitbutton">Submit photo</div>
+    <button id="submitbutton">Submit photo</button>
 </div>
 <div id="@User.Identity.Name" class="idkeeper"></div>
-
 <!-- /ko -->
-
