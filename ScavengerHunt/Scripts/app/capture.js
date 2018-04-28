@@ -42,7 +42,7 @@
                     var vendorURL = window.URL || window.webkitURL;
                     video.src = vendorURL.createObjectURL(stream);
                 }
-                video.play();
+                //video.play();
             },
             function (err) {
                 console.log("An error occured! " + err);
