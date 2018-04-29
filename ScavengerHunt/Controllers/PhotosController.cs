@@ -90,6 +90,25 @@ namespace ScavengerHunt.Controllers
             return Json(new { success = true });
         }
 
+        // GET: Photos/UserPhotos
+        [HttpGet]
+        public ActionResult UserPhotos(string UserID)
+        {
+            
+            return Json(db.Photos.ToList(),JsonRequestBehavior.AllowGet);
+        }
+
+        // POST: Photos/ImageData
+        // using a POST here is BS, but at the same time it makes everyting work without having to mess around with escaping things sooo....
+        [HttpPost]
+        public ActionResult ImageData()
+        {
+            var PhotoPath = HttpContext.Request.Form["path"];
+            var imageString = System.IO.File.ReadAllBytes(PhotoPath);
+            var baseString = Convert.ToBase64String(imageString);
+            return Json(new { success = true, baseString = baseString });
+        }
+
         // GET: Photos/Edit/5
         public ActionResult Edit(int? id)
         {

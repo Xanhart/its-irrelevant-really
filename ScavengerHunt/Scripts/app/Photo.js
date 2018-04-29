@@ -53,4 +53,40 @@
         
     })
 
+    $("#show-photos").click(function () {
+        $("#animal-select").hide();
+        $("#take-picture").hide();
+        $("#show-photos").hide();
+        var user = $(".idkeeper")[0].id
+
+
+
+        $.getJSON(('Photos/UserPhotos/'), function (data) {
+            var photoPaths = data.filter(function (item) {
+                return item.UserID === user;
+            })
+
+            for (i = 0; i < photoPaths.length; i++) {
+                var path = photoPaths[i].PhotoImageLocation
+                var animalName = photoPaths[i].PhotoAnimalName
+                var formData = new FormData()
+                formData.append('path', path)
+                $.ajax({
+                    type: 'POST',
+                    url: 'Photos/ImageData',
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var img = document.createElement("img")
+                        img.src = "data:image/png;base64," + data.baseString
+                        var animalElement = $('<label></label>').text(animalName)
+                        $('#cheat').after(animalElement)
+                        $('#cheat').after(img)
+                    }
+                })
+            }
+        
+        })
+    })
 });
