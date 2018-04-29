@@ -5,7 +5,7 @@
 
     var width = 320;    // We will scale the photo width to this
     var height = 0;     // This will be computed based on the input stream
-
+    var constraints = { video: { facingMode: "environment" }, audio: false };
     // |streaming| indicates whether or not we're currently streaming
     // video from the camera. Obviously, we start at false.
 
@@ -25,30 +25,56 @@
         photo = document.getElementById('photo');
         startbutton = document.getElementById('startbutton');
 
-        navigator.getMedia = (navigator.getUserMedia ||
-            navigator.webkitGetUserMedia ||
-            navigator.mozGetUserMedia ||
-            navigator.msGetUserMedia);
-
-        navigator.getMedia(
-            {
-                video: { facingMode: "environment" },
-                //video: true,
-                audio: false
-            },
-            function (stream) {
-                if (navigator.mozGetUserMedia) {
-                    video.mozSrcObject = stream;
-                } else {
-                    var vendorURL = window.URL || window.webkitURL;
-                    video.src = vendorURL.createObjectURL(stream);
+        // from: https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia
+        // Older browsers might not implement mediaDevices at all, so we set an empty object first
+        if (navigator.mediaDevices === undefined) {
+            navigator.mediaDevices = { };
+        }
+        
+        // Some browsers partially implement mediaDevices. We can't just assign an object
+        // with getUserMedia as it would overwrite existing properties.
+        // Here, we will just add the getUserMedia property if it's missing.
+        if (navigator.mediaDevices.getUserMedia === undefined) {
+            navigator.mediaDevices.getUserMedia = function(constraints) {
+                    
+                // First get ahold of the legacy getUserMedia, if present
+                var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+                    
+                // Some browsers just don't implement it - return a rejected promise with an error
+                // to keep a consistent interface
+                if (!getUserMedia) {
+                    return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
                 }
-                //video.play();
-            },
-            function (err) {
-                console.log("An error occured! " + err);
+                    
+                // Otherwise, wrap the call to the old navigator.getUserMedia with a Promise
+                return new Promise(function (resolve, reject) {
+                    getUserMedia.call(navigator, constraints, resolve, reject);
+                });
+            };
+        }
+
+        if (navigator.getUserMedia) {
+            //var elt = document.createElement('video');
+
+            if (!constraints) {
+                constraints = { video: true, audio: false };
             }
-        );
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(function (stream) {
+                    try {
+                        if ("srcObject" in video) {
+                            video.srcObject = stream;
+                        } else {
+                            video.src = window.URL.createObjectURL(stream);
+                        }
+                    } catch (err) {
+                        video.src = stream;
+                    }
+                }, function (e) { console.log(e); });
+        } else {
+            throw 'getUserMedia not supported in this browser';
+        }
 
         video.addEventListener('canplay', function (ev) {
             if (!streaming) {
